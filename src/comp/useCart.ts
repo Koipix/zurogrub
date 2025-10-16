@@ -29,7 +29,8 @@ export function useCart() {
   } 
 
   const removeItem = (id) => {
-    setItems(prev => prev.filter(i => i.id !== id))
+    setItems(prev => prev.filter((_, idx) => idx !== id))
+    console.log("triggered")
   }
 
   useEffect(() => {
