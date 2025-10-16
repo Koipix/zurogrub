@@ -1,38 +1,44 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPlus } from '@fortawesome/free-solid-svg-icons'
+import { useCart } from './useCart.ts'
+
+const menu = [
+  { name: "Hotdog", description: "Chessy Hotdog", price: 20},
+  { name: "Pizza", description: "Chessy Pizza", price: 100},
+  { name: "Milktea", description: "Creamy Milktea", price: 50},
+  { name: "Coffe", description: "Mixed Monster Energy for 1000x Power", price: 40},
+  { name: "Crispy Chicken", description: "Fresh Crispy Chicken", price: 120},
+  { name: "Orange Juice", description: "Sweet Orange Juice", price: 15},
+]
+
 function FoodBrwoser() {
+  const { items, addItem, removeItem, getItem } = useCart();
+
+  const handleEvent = (item) => {
+    addItem(item)
+    getItem();
+  }
 
   return (
     <>
-      <div className = "m-10 p-5 grid grid-cols-3 gap-4 border-2">
-        <div className = "food border-2 p-3">
-          <h3> Hotdog </h3>
-          <p> Chessy Hotdog </p>
-          <p> 999$ </p>
-        </div>
-        <div className = "food border-2 p-3">
-          <h3> Pizza </h3>
-          <p> Chessy Pizza </p>
-          <p> 999$ </p>
-        </div>
-        <div className = "food border-2 p-3">
-          <h3> Coffe </h3>
-          <p> Creamy Coffe </p>
-          <p> 999$ </p>
-        </div>
-        <div className = "food border-2 p-3">
-          <h3> Milk </h3>
-          <p> Creamy Milk </p>
-          <p> 999$ </p>
-        </div>
-        <div className = "food border-2 p-3">
-          <h3> Quaso </h3>
-          <p> quaso </p>
-          <p> 999$ </p>
-        </div>
-        <div className = "food border-2 p-3">
-          <h3> Alexie </h3>
-          <p> Offers special services </p>
-          <p> 999$ </p>
-        </div>
+      <h1 className = "ml-10 text-2xl">Our Menu</h1>
+      <div className = "m-10 p-5 grid grid-cols-2 gap-4 border-2">
+        {
+          menu.map((item, i) => (
+            <div key = {i} className = "border-2 p-3 flex justify-between">
+              <div>
+                <h3 className = "text-lg font-semibold"> {item.name} </h3>
+                <p className = "mt-2"> {item.description}</p>
+                <p> {item.price} PHP </p>
+              </div>
+              <div className = "flex items-center">
+                <FontAwesomeIcon icon = {faPlus} className = "text-2xl" 
+                  onClick = {() => handleEvent({ name: item.name, price: item.price})}
+                />
+              </div>
+            </div>
+          ))
+        }
       </div>
     </>
   )
