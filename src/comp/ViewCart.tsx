@@ -1,11 +1,22 @@
 import { useCart } from './useCart.ts'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 function ViewCart() {
   const { items, addItem, removeItem } = useCart();
   const total = items.reduce((sum, i) => sum + i.price * i.amount, 0);
+  const nav = useNavigate();
+  
+  const handleEvent = (e) => {
+    if (items.length === 0) {
+      e.preventDefault();
+      alert("Your cart is empty! Add something first.")
+    } else {
+      nav("/payment")
+    }
+  }
+
     return (
     <>
       <h1 className = "ml-10 text-2xl"> Your Cart </h1>
@@ -31,7 +42,7 @@ function ViewCart() {
       </div>
       <div className = "mx-10 text-xl font-semibold flex flex-col items-end">
         <h1> Total: {total} PHP</h1>
-        <Link to = "/payment" className = " border-2 text-2xl mt-4 px-3 py-2 rounded-sm"> Checkout </Link>
+        <button onClick = {handleEvent} className = " border-2 text-2xl mt-4 px-3 py-2 rounded-sm"> Checkout </button>
       </div>
     </>
   ) 
