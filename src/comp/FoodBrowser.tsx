@@ -12,11 +12,10 @@ const menu = [
 ]
 
 function FoodBrwoser() {
-  const { items, addItem, removeItem, getItem } = useCart();
+  const { addItem } = useCart();
 
   const handleEvent = (item) => {
     addItem(item)
-    getItem();
   }
 
   return (
