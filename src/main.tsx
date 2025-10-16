@@ -5,6 +5,7 @@ import './index.css';
 import App from './App.tsx'
 import FoodBrowser from './comp/FoodBrowser.tsx'
 import ViewCart from './comp/ViewCart.tsx'
+import PaymentSim from './comp/PaymentSim.tsx'
 
 const router = createBrowserRouter([
   {
@@ -18,6 +19,10 @@ const router = createBrowserRouter([
       {
         path: 'view-cart',
         element: <ViewCart/>
+      },
+      {
+        path: "payment",
+        element: <PaymentSim/>
       },
     ],
   },

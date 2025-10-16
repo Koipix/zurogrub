@@ -37,10 +37,10 @@ export function useCart() {
     localStorage.setItem("cart", JSON.stringify(items))
   }, [items])
 
-  const getItem = () => {
-    console.log(items)
-  }
+   const clearCart = () => {
+     setItems([]);
+   }
 
-  return { items, addItem, removeItem, getItem }
+  return { items, addItem, removeItem, clearCart }
 }
 
